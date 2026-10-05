@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/app/lib/auth/current-user"
-import { getUnits } from "@/app/features/unit/query/unit.query"
-import UnitForm from "@/app/features/unit/components/UnitForm"
-import UnitList from "@/app/features/unit/components/UnitList"
+import { getUnits } from "@/app/features/inventory/query/unit.query"
+import UnitForm from "@/app/features/inventory/components/UnitForm"
+import UnitList from "@/app/features/inventory/components/UnitList"
 
 export default async function UnitPage({
   searchParams,

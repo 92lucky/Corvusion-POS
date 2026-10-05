@@ -12,11 +12,36 @@ const aliases: Record<string, string[]> = {
   Supplier: ["supplier", "pemasok", "vendor"],
   Satuan: ["satuan", "unit"],
   Simbol: ["simbol", "symbol"],
-  "Harga Modal": ["harga modal", "harga beli", "harga pembelian", "modal", "buy price", "purchase price"],
-  "Harga Jual": ["harga jual", "harga penjualan", "jual", "selling price", "sale price"],
+  "Harga Modal": [
+    "harga modal",
+    "harga beli",
+    "harga pembelian",
+    "modal",
+    "buy price",
+    "purchase price",
+  ],
+  "Harga Jual": [
+    "harga jual",
+    "harga penjualan",
+    "jual",
+    "selling price",
+    "sale price",
+  ],
   Stok: ["stok", "stock", "jumlah", "qty", "quantity"],
-  "Minimum Stok": ["minimum stok", "stok minimum", "min stok", "minimum stock", "min stock"],
-  "Tanggal Expired": ["tanggal expired", "expired", "expired at", "tanggal kadaluarsa", "kadaluarsa"],
+  "Minimum Stok": [
+    "minimum stok",
+    "stok minimum",
+    "min stok",
+    "minimum stock",
+    "min stock",
+  ],
+  "Tanggal Expired": [
+    "tanggal expired",
+    "expired",
+    "expired at",
+    "tanggal kadaluarsa",
+    "kadaluarsa",
+  ],
   Dosis: ["dosis", "dosage"],
   Volume: ["volume"],
   Berat: ["berat", "weight"],
@@ -253,11 +278,11 @@ export async function importInventory(file: File) {
       dosage: text(values["Dosis"]) || null,
       volume:
         values["Volume"] != null
-          ? number(values["Volume"])
+          ? text(values["Volume"])
           : null,
       weight:
         values["Berat"] != null
-          ? number(values["Berat"])
+          ? text(values["Berat"])
           : null,
       notes: text(values["Catatan"]) || null,
     }

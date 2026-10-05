@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -182,33 +181,45 @@ export default function PurchaseForm({
         name,
         barcode:
           newProduct.barcode || undefined,
+
         categoryId:
           newProduct.categoryId,
+
         supplierId: undefined,
+
         unitId:
           newProduct.unitId || undefined,
+
         purchasePrice: 0,
+
         sellingPrice,
+
         stock: 0,
+
         minimumStock: Number(
           newProduct.minimumStock || 0
         ),
+
         weight:
           businessType === "BANGUNAN"
             ? Number(newProduct.weight || 0)
             : undefined,
+
         expiredAt:
           businessType === "APOTEK"
             ? newProduct.expiredAt
             : "",
+
         dosage:
           businessType === "APOTEK"
             ? newProduct.dosage
             : "",
+
         volume:
           businessType === "APOTEK"
-            ? Number(newProduct.volume || 0)
+            ? newProduct.volume || undefined
             : undefined,
+
         notes: newProduct.notes || "",
       })
 

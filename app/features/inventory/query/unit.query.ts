@@ -5,13 +5,6 @@ export async function getUnits(businessId: string) {
     where: {
       businessId,
     },
-    include: {
-      _count: {
-        select: {
-          products: true,
-        },
-      },
-    },
     orderBy: {
       name: "asc",
     },

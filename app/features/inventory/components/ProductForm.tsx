@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -60,7 +61,7 @@ export default function ProductForm({
   const [categories, setCategories] =
     useState(initialCategories)
 
-  const [units, setUnits] =
+  const [units] =
     useState(initialUnits)
 
   const [existingProduct, setExistingProduct] =
@@ -87,7 +88,9 @@ export default function ProductForm({
       ? String(product.sellingPrice)
       : "",
 
-    stock: product ? String(product.stock) : "",
+    stock: product
+      ? String(product.stock)
+      : "",
 
     weight: product?.weight
       ? String(product.weight)
@@ -164,8 +167,6 @@ export default function ProductForm({
             ? String(found.sellingPrice)
             : "",
 
-        // KOSONGKAN.
-        // User memasukkan stok tambahan.
         stock: "",
 
         weight:
@@ -220,14 +221,6 @@ export default function ProductForm({
         )
       }
 
-      /*
-       * PRODUK LAMA
-       *
-       * Contoh:
-       * stok lama = 10
-       * stok tambahan = 5
-       * hasil = 15
-       */
       const stock = existingProduct
         ? existingProduct.stock +
           additionalStock
@@ -267,41 +260,25 @@ export default function ProductForm({
             ? form.dosage
             : "",
 
-            volume:
-              businessType === "APOTEK"
-                ? form.volume || undefined
-                : undefined,
+        volume:
+          businessType === "APOTEK"
+            ? form.volume || undefined
+            : undefined,
 
         notes: form.notes,
       }
 
-      /*
-       * MODE EDIT
-       */
       if (product) {
         await updateProduct(
           product.id,
           input
         )
-      }
-
-      /*
-       * PRODUK SUDAH ADA
-       *
-       * UPDATE produk lama.
-       * TIDAK membuat produk baru.
-       */
-      else if (existingProduct) {
+      } else if (existingProduct) {
         await updateProduct(
           existingProduct.id,
           input
         )
-      }
-
-      /*
-       * PRODUK BENAR-BENAR BARU
-       */
-      else {
+      } else {
         await createProduct(input)
       }
 
@@ -479,19 +456,7 @@ export default function ProductForm({
           ))}
         </select>
 
-        <UnitForm
-          onCreated={(unit) => {
-            setUnits((current) => [
-              ...current,
-              unit,
-            ])
-
-            setField(
-              "unitId",
-              unit.id
-            )
-          }}
-        />
+        <UnitForm />
       </div>
 
       {businessType === "BANGUNAN" && (
@@ -543,8 +508,6 @@ export default function ProductForm({
           <input
             name="volume"
             type="text"
-
-            step="0.01"
             value={form.volume}
             onChange={(event) =>
               setField(
